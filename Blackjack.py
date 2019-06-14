@@ -139,19 +139,24 @@ def game():
         # Viser kortne
         show_some(player_hand, dealer_hand)
         while playing:
+            if player_hand.value == 21:
+                break
+            elif dealer_hand.value == 21:
+                break    
             # Her laver jeg logikken får double down
-            if player_hand.value<=11:
+            elif player_hand.value<=11:
                 double_input = input("Do you want to double down? (Y/N)") 
-                print(double_input)
                 if double_input == "Y" and (int(Betting)+int(Betting)) <= total:
                     Betting = int(Betting)+int(Betting)
-                    print(Betting)
+                    hit_or_stand(deck, player_hand)
+                    break
                 elif double_input == "Y" and (int(Betting+Betting)) > total:
                     print("You dont have the money to double down!")
                 elif (double_input == "N"):
                     print("You have rejected to doubledown")
          # venter på at spiller kommer med sit valg om hit or stand
             hit_or_stand(deck, player_hand)
+
 
         #  Viser kornte igen med det næste kort i tilfælde af playerne tasted h
             show_some(player_hand, dealer_hand)
@@ -185,7 +190,7 @@ def game():
                 total = total - int(Betting)
 
             elif dealer_hand.value < player_hand.value:
-                if (dealer_hand.value == 21):
+                if (player_hand.value == 21):
                     print("Player Blackjack")
                 print("Player hand better than Dealer, Player wins")
                 total = total + int(Betting)
