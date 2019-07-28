@@ -144,7 +144,7 @@ def game():
             elif dealer_hand.value == 21:
                 break    
             # Her laver jeg logikken får double down
-            elif player_hand.value<=11:
+            elif player_hand.value in (9,10,11):
                 double_input = input("Do you want to double down? (Y/N)") 
                 if double_input == "Y" and (int(Betting)+int(Betting)) <= total:
                     Betting = int(Betting)+int(Betting)
